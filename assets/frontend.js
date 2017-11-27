@@ -1,19 +1,9 @@
-import { url } from "inspector";
-
 'use strict'
 
 const localhost = 'http://localhost:3000';
 let solutionField = document.querySelector('#solutionfield');
 const getButton = document.querySelector('#getbutton');
 
-getButton.addEventListener('click', function(){
-    let selectedItem = document.querySelector('#items');
-    let selectedSize = document.querySelector('#sizes');
-    let selectedQuantity = document.querySelector('#quantity');
-    let query = `/price-check?item="${selectedItem.value}"&size="${selectedSize.value}"&quantity=${selectedQuantity.value}`;
-    ajax('GET', localhost + query, createTable);
-
-});
 
 function ajax (method, url, callback) {
     let xhr = new XMLHttpRequest;
@@ -30,24 +20,38 @@ function ajax (method, url, callback) {
 function createTable (response) {
     solutionField.innerHTML = "";
     solutionField.innerHTML = `<tr>
-                                    <th>Item</th>
+    <th>Item</th>
                                     <th>Manufacturer</th>
                                     <th>Category</th>
                                     <th>Size</th>
                                     <th>Unit pice</th>
-                                </tr>`;
+                                    </tr>`;
     
-    response.clothes.forEach(function(item){
-        solutionField.innerHTML += `<tr>
+                                    response.clothes.forEach(function(item){
+                                        solutionField.innerHTML += `<tr>
                                         <td>${item.item_name}</td>
                                         <td>${item.manufacturer}</td>
                                         <td>${item.category}</td>
                                         <td>${item.size}</td>
                                         <td>${item.unit_price}</td>
                                     </tr>`;
-                            
+                                    
                         });
 };
 
-ajax('GET', localhost + "/warehouse", createTable);
+function createReport (res) {
+    console.log(res);
+    let headerText = document.querySelector('#report');
+    headerText.innerHTML = "";
+    headerText.innerHTML += `<div style="background-color:green">${res.quantity} ${res.item} bought</div>`;    
+}
 
+getButton.addEventListener('click', function(){
+    let selectedItem = document.querySelector('#items');
+    let selectedSize = document.querySelector('#sizes');
+    let selectedQuantity = document.querySelector('#quantity');
+    let query = `/price-check?item="${selectedItem.value}"&size="${selectedSize.value}"&quantity=${selectedQuantity.value}`;
+    ajax('GET', localhost + query, createReport);
+});
+
+ajax('GET', localhost + "/warehouse", createTable);
