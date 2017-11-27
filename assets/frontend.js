@@ -41,16 +41,18 @@ function createTable (response) {
 
 function createReport (res) {
     console.log(res);
+
     let headerText = document.querySelector('#report');
-    headerText.innerHTML = "";
-    headerText.innerHTML += `<div style="background-color:green">${res.quantity} ${res.item} bought</div>`;    
-}
+    // headerText.innerHTML = "";
+    headerText.innerHTML += `<br><div style="background-color:green">${res.quantity} piece(s) of ${res.total_price[0].item_name} from ${res.total_price[0].manufacturer} is bought!</div>`;    
+    solutionField.innerHTML = "";
+};
 
 getButton.addEventListener('click', function(){
     let selectedItem = document.querySelector('#items');
     let selectedSize = document.querySelector('#sizes');
     let selectedQuantity = document.querySelector('#quantity');
-    let query = `/price-check?item="${selectedItem.value}"&size="${selectedSize.value}"&quantity=${selectedQuantity.value}`;
+    let query = `/price-check?item=${selectedItem.value}&size=${selectedSize.value}&quantity=${selectedQuantity.value}`;
     ajax('GET', localhost + query, createReport);
 });
 

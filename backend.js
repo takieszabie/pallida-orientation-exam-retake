@@ -46,22 +46,10 @@ app.get('/price-check', function (req, res) {
     connection.query(sqlCode, function (err, row){
         res.send({
             "result": "ok",
-            "total_price": row
+            "total_price": row,
+            "quantity": req.query.quantity
         });
     });
 });
-
-// app.get('/add', function (req, res) {
-//     // console.log(req.query.plate);
-//     let sqlCode = `INSERT INTO licence_plates (plate, car_brand, car_model, color, year) VALUES ("${req.query.plate}", "${req.query.brand}", "${req.query.model}", "${req.query.color}", "${req.query.year}")`;
-//     connection.query(sqlCode, function (err, row){
-//         res.send({
-//             "result": "ok",
-//             "data": row
-//         });
-//     });
-// });
-
-
 
 app.listen(3000, () => console.log('Server is running (port:3000)...'));
