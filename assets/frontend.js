@@ -7,8 +7,6 @@ const getButton = document.querySelector('#getbutton');
 function ajax (method, url, callback) {
     let xhr = new XMLHttpRequest;
     xhr.open(method, url);
-    solutionField.innerHTML = "";    
-    solutionField.innerHTML += `<center><h1>Please wait for the data!`;
     xhr.onload = function () {
         callback( JSON.parse(xhr.responseText) );
     };
@@ -23,7 +21,7 @@ function createTable (response) {
                                     <th>Manufacturer</th>
                                     <th>Category</th>
                                     <th>Size</th>
-                                    <th>Unit pice</th>
+                                    <th>Unit price</th>
                                     </tr>`;
     
                                     response.clothes.forEach(function(item){
