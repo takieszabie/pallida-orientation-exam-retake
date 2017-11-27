@@ -40,12 +40,12 @@ function createReport (res) {
     if (res.result !== "ok") {
         headerText.innerHTML = ""
         headerText.innerHTML += `Green Fox Fashion Web Storage
-                                <br><div style="background-color:red">${res.result}</div>`;    
+                                <div style="background-color:red; font-size: 70%">${res.result}</div>`;    
         solutionField.innerHTML = "";
     } else {
         headerText.innerHTML = ""
         headerText.innerHTML += `Green Fox Fashion Web Storage
-                                <br><div style="background-color:green">Spended ${res.total_price}$. Thank you!</div>`;    
+                                <div style="background-color:green; font-size: 70%">Spended ${res.total_price}$. Thank you!</div>`;    
         solutionField.innerHTML = "";
     }
 };
@@ -56,6 +56,8 @@ getButton.addEventListener('click', function(){
     let selectedQuantity = document.querySelector('#quantity');
     let query = `/price-check?item=${selectedItem.value}&size=${selectedSize.value}&quantity=${selectedQuantity.value}`;
     ajax('GET', localhost + query, createReport);
+    ajax('GET', localhost + "/warehouse", createTable);
+
 });
 
 ajax('GET', localhost + "/warehouse", createTable);
