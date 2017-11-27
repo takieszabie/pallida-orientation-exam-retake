@@ -17,22 +17,22 @@ function ajax (method, url, callback) {
 function createTable (response) {
     solutionField.innerHTML = "";
     solutionField.innerHTML = `<tr>
-    <th>Item</th>
+                                    <th>Item</th>
                                     <th>Manufacturer</th>
                                     <th>Category</th>
                                     <th>Size</th>
                                     <th>Unit price</th>
-                                    </tr>`;
+                                </tr>`;
     
-                                    response.clothes.forEach(function(item){
-                                        solutionField.innerHTML += `<tr>
+    response.clothes.forEach(function(item){
+        solutionField.innerHTML += `<tr>
                                         <td>${item.item_name}</td>
                                         <td>${item.manufacturer}</td>
                                         <td>${item.category}</td>
                                         <td>${item.size}</td>
                                         <td>${item.unit_price}</td>
                                     </tr>`;
-                        });
+    });
 };
 
 function createReport (res) {
@@ -47,7 +47,7 @@ function createReport (res) {
         headerText.innerHTML += `Green Fox Fashion Web Storage
                                 <div style="background-color:green; font-size: 70%">Spended ${res.total_price}$. Thank you!</div>`;    
         solutionField.innerHTML = "";
-    }
+    };
 };
 
 getButton.addEventListener('click', function(){

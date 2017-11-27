@@ -65,7 +65,7 @@ app.get('/price-check', function (req, res) {
         } else {
             res.send({
                 "result": "ok",
-                "total_price": quantity * row[0].unit_price
+                "total_price": quantity * row[0].unit_price,
             });
         };
     });
