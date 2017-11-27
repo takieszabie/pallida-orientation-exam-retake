@@ -41,6 +41,8 @@ app.get('/warehouse', function(req, res){
 
 app.get('/price-check', function (req, res) {
     let sqlCode = `SELECT * FROM warehouse WHERE item_name="${req.query.item}" AND size="${req.query.size}"`;
+    
+    
     connection.query(sqlCode, function (err, row){
         res.send({
             "result": "ok",
