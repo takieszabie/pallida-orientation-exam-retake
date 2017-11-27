@@ -96,4 +96,7 @@ Return the following JSON if the quantity is smaller than 3:
 ## 2) Quiz time
 
  - What is a middleware and why it's used? (2p)
+    Middleware (like expressJS) is between in request and response. Middleware allows you to define a stack of actions that you should flow through.
+
  - What's the main difference between the `onload` and the `readystatechange` provided by the `XMLHttpRequest` object? (1p)
+    Onreadystatechange is a property of the XMLHttpRequest, and is supported in all browsers. With this property, we can check the actualy number(s) of the readyState (0 - 4) and status (200, 400, 404, etc.).
