@@ -40,15 +40,34 @@ app.get('/warehouse', function(req, res){
 });
 
 app.get('/price-check', function (req, res) {
-    console.log(req.query.quantity);
     let sqlCode = `SELECT * FROM warehouse WHERE item_name LIKE "%${req.query.item}%" AND size="${req.query.size}"`;
     let quantity = req.query.quantity;
 
     connection.query(sqlCode, function (err, row){
-        res.send({
-            "result": "ok",
-            "total_price": quantity * row[0].unit_price
-        });
+        
+        // WARNING!! FIGYELEM!! EZEKET AZÉRT KELLETT KI-COMMENT-ELNEM, MERT A FELADAT SQL FILE-JA NEM TARTALMAZOTT VALID DARABSZÁMOKAT! (Mindegyik értéke NULL volt! Ezt jeleztem is az itt lévő mentoroknak! Így nem lehet leellenőrizni, ill. nincs értelme. Azért bennehagyom, mert kb. így lett volna a megoldása...)
+
+        // if (row.in_store > req.query.quantity){
+        //     res.send({
+        //         "result": "ok",
+        //         "total_price": quantity * row[0].unit_price
+        //     });
+        // } else {
+        //     res.send({
+        //         "result": "error, we don't have enough items in store"
+        //     });
+        // };  
+
+        if (req.query.quantity < 3) {
+            res.send({
+                "result": "please order at least 3, one for yourself, two for your friends"
+            });
+        } else {
+            res.send({
+                "result": "ok",
+                "total_price": quantity * row[0].unit_price
+            });
+        };
     });
 });
 

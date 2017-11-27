@@ -39,8 +39,17 @@ function createTable (response) {
 
 function createReport (res) {
     let headerText = document.querySelector('#report');
-    headerText.innerHTML += `<br><div style="background-color:green">Spended ${res.total_price}$. Thank you!</div>`;    
-    solutionField.innerHTML = "";
+    if (res.result !== "ok") {
+        headerText.innerHTML = ""
+        headerText.innerHTML += `Green Fox Fashion Web Storage
+                                <br><div style="background-color:red">${res.result}</div>`;    
+        solutionField.innerHTML = "";
+    } else {
+        headerText.innerHTML = ""
+        headerText.innerHTML += `Green Fox Fashion Web Storage
+                                <br><div style="background-color:green">Spended ${res.total_price}$. Thank you!</div>`;    
+        solutionField.innerHTML = "";
+    }
 };
 
 getButton.addEventListener('click', function(){
