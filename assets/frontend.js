@@ -4,7 +4,6 @@ const localhost = 'http://localhost:3000';
 let solutionField = document.querySelector('#solutionfield');
 const getButton = document.querySelector('#getbutton');
 
-
 function ajax (method, url, callback) {
     let xhr = new XMLHttpRequest;
     xhr.open(method, url);
@@ -35,16 +34,12 @@ function createTable (response) {
                                         <td>${item.size}</td>
                                         <td>${item.unit_price}</td>
                                     </tr>`;
-                                    
                         });
 };
 
 function createReport (res) {
-    console.log(res);
-
     let headerText = document.querySelector('#report');
-    // headerText.innerHTML = "";
-    headerText.innerHTML += `<br><div style="background-color:green">${res.quantity} piece(s) of ${res.total_price[0].item_name} from ${res.total_price[0].manufacturer} is bought!</div>`;    
+    headerText.innerHTML += `<br><div style="background-color:green">Spended ${res.total_price}$. Thank you!</div>`;    
     solutionField.innerHTML = "";
 };
 

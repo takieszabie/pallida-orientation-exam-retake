@@ -40,14 +40,14 @@ app.get('/warehouse', function(req, res){
 });
 
 app.get('/price-check', function (req, res) {
-    console.log(req.query);
+    console.log(req.query.quantity);
     let sqlCode = `SELECT * FROM warehouse WHERE item_name LIKE "%${req.query.item}%" AND size="${req.query.size}"`;
-    
+    let quantity = req.query.quantity;
+
     connection.query(sqlCode, function (err, row){
         res.send({
             "result": "ok",
-            "total_price": row,
-            "quantity": req.query.quantity
+            "total_price": quantity * row[0].unit_price
         });
     });
 });
