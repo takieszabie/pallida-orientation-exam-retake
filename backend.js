@@ -28,15 +28,7 @@ app.get('/', function (req, res){
 });
 
 app.get('/warehouse', function(req, res){
-    // let filter = '';
-    
-    // if( req.query.police ){  
-    //     filter = 'RB%';
-    // };
-    
-    // if( req.query.diplomat ){
-    //     filter = 'DT%';
-    // };
+
     let sqlCode = `SELECT * FROM warehouse`;
     
     connection.query(sqlCode, function(err, rows){
@@ -48,7 +40,7 @@ app.get('/warehouse', function(req, res){
 });
 
 app.get('/price-check', function (req, res) {
-    let sqlCode = `SELECT * FROM licence_plates WHERE car_brand="${req.params.brand}"`;
+    let sqlCode = `SELECT * FROM warehouse WHERE item_name="${req.query.item}" AND size="${req.query.size}"`;
     connection.query(sqlCode, function (err, row){
         res.send({
             "result": "ok",
