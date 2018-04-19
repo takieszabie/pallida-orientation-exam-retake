@@ -1,11 +1,9 @@
 package com.greenfoxacademy.examretakepallida.Models;
 
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
+import javax.persistence.*;
 
 @Entity
+@Table(name = "warehouse")
 public class Item {
 
   @GeneratedValue(strategy = GenerationType.AUTO)
@@ -16,15 +14,13 @@ public class Item {
   private String category;
   private String size;
   private double unitPrice;
-  private boolean inStore;
 
-  public Item(String itemName, String manufacturer, String category, String size, double unitPrice, boolean inStore) {
+  public Item(String itemName, String manufacturer, String category, String size, double unitPrice) {
     this.itemName = itemName;
     this.manufacturer = manufacturer;
     this.category = category;
     this.size = size;
     this.unitPrice = unitPrice;
-    this.inStore = inStore;
   }
 
   public Item() {
@@ -76,13 +72,5 @@ public class Item {
 
   public void setUnitPrice(double unitPrice) {
     this.unitPrice = unitPrice;
-  }
-
-  public boolean isInStore() {
-    return inStore;
-  }
-
-  public void setInStore(boolean inStore) {
-    this.inStore = inStore;
   }
 }

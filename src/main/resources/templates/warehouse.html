@@ -2,11 +2,28 @@
 <html xmlns:th="http://www.thymeleaf.org">
 <head>
     <meta charset="UTF-8">
-    <title>Peer to peer chat program</title>
+    <title>Green Fox Fashion Store Warehouse</title>
     <link rel="stylesheet" th:href="@{/style.css}"/>
 </head>
+<h1>Green Fox Fashion Store Warehouse</h1>
 
-<h1>Warehouse</h1>
+
+<table>
+    <tr>
+        <th>Item name</th>
+        <th>Manufacturer</th>
+        <th>Category</th>
+        <th>Size</th>
+        <th>Unit price</th>
+    </tr>
+    <tr th:each="item : ${items}">
+        <td th:text="${item.itemName}"></td>
+        <td th:text="${item.manufacturer}"></td>
+        <td th:text="${item.category}"></td>
+        <td th:text="${item.size}"></td>
+        <td th:text="${item.unitPrice}"></td>
+    </tr>
+</table>
 
 </body>
 </html>
