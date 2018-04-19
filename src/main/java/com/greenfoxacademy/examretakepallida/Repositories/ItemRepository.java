@@ -18,4 +18,12 @@ public interface ItemRepository extends CrudRepository<Item, Long> {
   @Query("select c from Item c where c.itemName like :itemName and c.size like :itemSize")
   List<Item> findByItemNameAndSize(@Param("itemName") String itemNameInput, @Param("itemSize") String itemSizeInput);
 
+  @Query("select c from Item c where c.unitPrice like :unitPrice")
+  List<Item> findByUnitPriceEquals(@Param("unitPrice") float unitPrice);
+
+  @Query("select c from Item c where c.unitPrice < :unitPrice")
+  List<Item> findByUnitPriceIsLessThan(@Param("unitPrice") float unitPrice);
+
+  @Query("select c from Item c where c.unitPrice > :unitPrice")
+  List<Item> findByUnitPriceIsGreaterThan(@Param("unitPrice") float unitPrice);
 }
