@@ -19,12 +19,12 @@
         <th>Sub-Total</th>
     </tr>
     <tr th:each="warehouseItem : ${itemsList}">
-        <td th:text="${itemName}"></td>
-        <td th:text="${warehouseItem.getManufacturer()}"></td>
-        <td th:text="${warehouseItem.getCategory()}"></td>
-        <td th:text="${sizeNum}"></td>
+        <td th:text="${warehouseItem.itemName}"></td>
+        <td th:text="${warehouseItem.manufacturer}"></td>
+        <td th:text="${warehouseItem.category}"></td>
+        <td th:text="${warehouseItem.size}"></td>
         <td th:text="${amount}"></td>
-        <td th:text="${warehouseItem.getUnitPrice()}"></td>
+        <td th:text="${warehouseItem.unitPrice}"></td>
         <td th:text="${subTotal}"></td>
     </tr>
 </table>

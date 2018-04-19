@@ -34,10 +34,8 @@ public class MainController {
     if (warehouses.size() == 0) {
       return "redirect:/warehouse";
     } else {
-      model.addAttribute("itemName", itemName);
-      model.addAttribute("sizeNum", sizeNum);
-      model.addAttribute("amount", amount);
       model.addAttribute("itemsList", warehouses);
+      model.addAttribute("amount", amount);
       Item item = warehouses.get(0);
       model.addAttribute("subTotal", amount * item.getUnitPrice());
       return "summary";
